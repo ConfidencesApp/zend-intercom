@@ -1,0 +1,22 @@
+<?php
+/**
+ * Confidences ZendIntercom Configuration
+ *
+ * If you have a ./config/autoload/ directory set up for your project, you can
+ * drop this config file in it, remove the .dist extension add your configuration details.
+ */
+$settings = array(
+
+    /**
+     * Your Intercom Credentials, see https://developers.intercom.com/docs/personal-access-tokens
+     */
+	'app_id' => null,
+	'access_token' => null
+);
+
+/**
+ * You do not need to edit below this line
+ */
+return array(
+    'zend-intercom' => $settings,
+);

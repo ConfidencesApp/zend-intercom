@@ -23,3 +23,12 @@ data/DoctrineORMModule/cache/
 # Legacy ZF1
 demos/
 extras/documentation
+
+# IDE
+/.settings/
+/.buildpath
+/.project
+
+# Ignore PHPUnit coverage file
+clover.xml
+coveralls-upload.json
