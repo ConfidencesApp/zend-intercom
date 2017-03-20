@@ -38,9 +38,10 @@ class Module implements
             $excludedRoutes = $options->getExcludedRoutes();
             if (count($excludedRoutes)) {
                 $em = $e->getApplication()->getEventManager();
-                $em->attach(MvcEvent::EVENT_DISPATCH,
-                    function($dispatchEvent) use ($excludedRoutes, $sm) {
-                        if(!in_array($dispatchEvent->getRouteMatch()->getMatchedRouteName(), $excludedRoutes)) {
+                $em->attach(
+                    MvcEvent::EVENT_DISPATCH,
+                    function ($dispatchEvent) use ($excludedRoutes, $sm) {
+                        if (!in_array($dispatchEvent->getRouteMatch()->getMatchedRouteName(), $excludedRoutes)) {
                             $this->setupJavascriptLogging($sm);
                         }
                     }
@@ -83,8 +84,7 @@ class Module implements
         $options = $sm->get(ModuleOptions::class);
         $authService = $sm->get('zend_intercom_auth_service');
         
-        if ($authService instanceof AuthenticationServiceInterface && $authService->hasIdentity())
-        {
+        if ($authService instanceof AuthenticationServiceInterface && $authService->hasIdentity()) {
             $idMethod = $options->getZendIntercomAuthIdentityIdMethod();
             $emailMethod = $options->getZendIntercomAuthIdentityEmailMethod();
             $identity = $authService->getIdentity();

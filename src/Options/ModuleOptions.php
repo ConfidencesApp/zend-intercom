@@ -47,7 +47,7 @@ class ModuleOptions extends AbstractOptions
      */
     protected $zendIntercomAuthIdentityEmailMethod = 'getEmail';
 
- 	/**
+    /**
      * @return string $appId
      */
     public function getAppId()
@@ -55,7 +55,7 @@ class ModuleOptions extends AbstractOptions
         return $this->appId;
     }
 
- 	/**
+    /**
      * @param string $appId
      * @return self
      */
@@ -65,7 +65,7 @@ class ModuleOptions extends AbstractOptions
         return $this;
     }
 
- 	/**
+    /**
      * @return string $accessToken
      */
     public function getAccessToken()
@@ -73,7 +73,7 @@ class ModuleOptions extends AbstractOptions
         return $this->accessToken;
     }
 
- 	/**
+    /**
      * @param string $accessToken
      * @return self
      */
@@ -83,7 +83,7 @@ class ModuleOptions extends AbstractOptions
         return $this;
     }
 
- 	/**
+    /**
      * @return bool $enableJavascriptIntegration
      */
     public function getEnableJavascriptIntegration()
@@ -91,7 +91,7 @@ class ModuleOptions extends AbstractOptions
         return $this->enableJavascriptIntegration;
     }
 
- 	/**
+    /**
      * @param bool $enableJavascriptIntegration
      * @return self
      */
@@ -101,7 +101,7 @@ class ModuleOptions extends AbstractOptions
         return $this;
     }
 
- 	/**
+    /**
      * @return array $excludedRoutes
      */
     public function getExcludedRoutes()
@@ -109,7 +109,7 @@ class ModuleOptions extends AbstractOptions
         return $this->excludedRoutes;
     }
 
- 	/**
+    /**
      * @param array $excludedRoutes
      * @return self
      */
@@ -119,7 +119,7 @@ class ModuleOptions extends AbstractOptions
         return $this;
     }
 
- 	/**
+    /**
      * @return string $zendIntercomAuthIdentityIdMethod
      */
     public function getZendIntercomAuthIdentityIdMethod()
@@ -127,7 +127,7 @@ class ModuleOptions extends AbstractOptions
         return $this->zendIntercomAuthIdentityIdMethod;
     }
 
- 	/**
+    /**
      * @param string $zendIntercomAuthIdentityIdMethod
      * @return self
      */
@@ -137,7 +137,7 @@ class ModuleOptions extends AbstractOptions
         return $this;
     }
 
- 	/**
+    /**
      * @return string $zendIntercomAuthIdentityEmailMethod
      */
     public function getZendIntercomAuthIdentityEmailMethod()
@@ -145,7 +145,7 @@ class ModuleOptions extends AbstractOptions
         return $this->zendIntercomAuthIdentityEmailMethod;
     }
 
- 	/**
+    /**
      * @param string $zendIntercomAuthIdentityEmailMethod
      * @return self
      */
