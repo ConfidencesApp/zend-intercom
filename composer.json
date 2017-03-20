@@ -3,7 +3,7 @@
     "description": "A Zend Framework 3 module that lets you to use the Intercom service. ",
     "license": "Apache-2.0",
     "type": "library",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "keywords": [
         "zf3",
         "intercom"
