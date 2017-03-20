@@ -1,16 +1,23 @@
 <?php
+/**
+ * Confidences ZendIntercom
+ *
+ * This source file is part of the Confidences ZendIntercom package
+ *
+ * @package    Confidences\ZendIntercom\Options
+ * @license    Apache 2 {@link /LICENSE}
+ * @copyright  Copyright (c) 2017, Confidences
+ */
 namespace Confidences\ZendIntercom\Options;
 
 use Interop\Container\ContainerInterface;
-use Interop\Container\Exception\ContainerException;
-use Zend\ServiceManager\Exception\ServiceNotCreatedException;
-use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\ServiceManager\Factory\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use ZfcUser\Options;
 
 class ModuleOptionsFactory implements FactoryInterface
 {
+    /**
+     * {@inheritDoc}
+     */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $config = $container->get('Config');

@@ -4,7 +4,7 @@
  *
  * This source file is part of the Confidences ZendIntercom package
  *
- * @package    Confidences\ZendIntercom\Factory\IntercomServiceFactory
+ * @package    Confidences\ZendIntercom\Factory
  * @license    Apache 2 {@link /LICENSE}
  * @copyright  Copyright (c) 2017, Confidences
  */
@@ -17,9 +17,8 @@ use Interop\Container\ContainerInterface;
 
 class IntercomServiceFactory implements FactoryInterface
 {
-    
-    /* (non-PHPdoc)
-     * @see \Zend\ServiceManager\Factory\FactoryInterface::__invoke()
+    /**
+     * {@inheritDoc}
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
