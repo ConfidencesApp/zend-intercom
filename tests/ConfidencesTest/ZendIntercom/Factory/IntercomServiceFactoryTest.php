@@ -1,11 +1,10 @@
 <?php
 namespace ConfidencesTest\ZendIntercom\Service;
 
-use PHPUnit_Framework_TestCase as TestCase;
 use ConfidencesTest\ZendIntercom\Util\ServiceManagerFactory;
 use Intercom\IntercomClient;
 
-class IntercomServiceFactoryTest extends TestCase
+class IntercomServiceFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testFactoryCreatesIntercomService()
     {

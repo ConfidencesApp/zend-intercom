@@ -1,11 +1,10 @@
 <?php
 namespace ConfidencesTest\ZendIntercom;
 
-use PHPUnit_Framework_TestCase as TestCase;
 use Confidences\ZendIntercom\Module;
 use Zend\Loader;
 
-class ModuleTest extends TestCase
+class ModuleTest extends \PHPUnit_Framework_TestCase
 {
     public function testModuleProvidesConfig()
     {

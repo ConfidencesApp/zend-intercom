@@ -1,11 +1,10 @@
 <?php
 namespace ConfidencesTest\ZendIntercom\Controller\Plugin;
 
-use PHPUnit_Framework_TestCase as TestCase;
 use Confidences\ZendIntercom\Controller\Plugin\Intercom;
 use Intercom\IntercomClient;
 
-class IntercomTest extends TestCase
+class IntercomTest extends \PHPUnit_Framework_TestCase
 {
     protected $service;
     protected $plugin;
