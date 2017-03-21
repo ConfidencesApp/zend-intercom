@@ -4,11 +4,11 @@
  *
  * This source file is part of the Confidences ZendIntercom package
  *
- * @package    Confidences\ZendIntercom\Options
+ * @package    Confidences\ZendIntercom
  * @license    Apache 2 {@link /LICENSE}
  * @copyright  Copyright (c) 2017, Confidences
  */
-namespace Confidences\ZendIntercom\Options;
+namespace Confidences\ZendIntercom\Factory;
 
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;

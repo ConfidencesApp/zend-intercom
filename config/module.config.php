@@ -2,7 +2,9 @@
 use Confidences\ZendIntercom\Factory\IntercomServiceFactory;
 use Confidences\ZendIntercom\Factory\IntercomControllerPluginFactory;
 use Confidences\ZendIntercom\Options\ModuleOptions;
-use Confidences\ZendIntercom\Options\ModuleOptionsfactory;
+use Confidences\ZendIntercom\Factory\ModuleOptionsFactory;
+use Confidences\ZendIntercom\Listener\Javascript;
+use Confidences\ZendIntercom\Factory\JavascriptFactory;
 
 return [
     'zend-intercom' => [
@@ -15,8 +17,9 @@ return [
     ],
     'service_manager' => [
         'factories' => [
-            'intercom' => IntercomServiceFactory::class,
-            ModuleOptions::class => ModuleOptionsfactory::class,
+            ModuleOptions::class => ModuleOptionsFactory::class,
+            Javascript::class => JavascriptFactory::class,
+            'intercom' => IntercomServiceFactory::class
         ],
         'aliases' => [
             'zend_intercom_auth_service' => 'zfcuser_auth_service'

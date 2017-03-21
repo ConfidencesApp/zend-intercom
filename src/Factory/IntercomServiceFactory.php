@@ -4,7 +4,7 @@
  *
  * This source file is part of the Confidences ZendIntercom package
  *
- * @package    Confidences\ZendIntercom\Factory
+ * @package    Confidences\ZendIntercom
  * @license    Apache 2 {@link /LICENSE}
  * @copyright  Copyright (c) 2017, Confidences
  */

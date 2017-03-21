@@ -12,16 +12,19 @@ namespace Confidences\ZendIntercom\Factory;
 
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;
-use Confidences\ZendIntercom\Controller\Plugin\Intercom as IntercomControllerPlugin;
+use Confidences\ZendIntercom\Options\ModuleOptions;
 
-class IntercomControllerPluginFactory implements FactoryInterface
+class JavascriptFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $service = $container->get('intercom');
-        return new IntercomControllerPlugin($service);
+        return new $requestedName(
+            $container->get(ModuleOptions::class),
+            $container->get('zend_intercom_auth_service'),
+            $container->get('ViewHelperManager')
+        );
     }
 }
