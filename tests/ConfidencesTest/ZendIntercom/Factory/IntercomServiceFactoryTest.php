@@ -1,5 +1,5 @@
 <?php
-namespace ConfidencesTest\ZendIntercom\Service;
+namespace ConfidencesTest\ZendIntercom\Factory;
 
 use ConfidencesTest\ZendIntercom\Util\ServiceManagerFactory;
 use Intercom\IntercomClient;
