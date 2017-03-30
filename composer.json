@@ -36,5 +36,17 @@
         "classmap": [
             "./Module.php"
         ]
+    },
+    "scripts": {
+        "tests": [
+        	"@psr",
+        	"@coverage"
+        ],
+        "psr": "php ./vendor/bin/phpcs --standard=PSR2 src tests",
+        "coverage" : [
+        	"@phpunit",
+        	"php ./vendor/bin/coveralls --dry-run -v"
+        ],
+        "phpunit": "php ./vendor/bin/phpunit"
     }
 }

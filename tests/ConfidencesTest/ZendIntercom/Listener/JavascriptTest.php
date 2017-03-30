@@ -56,10 +56,22 @@ class JavascriptFactoryTest extends \PHPUnit_Framework_TestCase
         $em = new EventManager();
         $this->listener->attach($em);
         
-        $em->triggerEvent((new MvcEvent(MvcEvent::EVENT_RENDER))->setRouteMatch((new RouteMatch([]))->setMatchedRouteName('displayable-route')));
+        $em->triggerEvent((new MvcEvent(MvcEvent::EVENT_RENDER))
+            ->setRouteMatch((new RouteMatch([]))->setMatchedRouteName('displayable-route')));
         
         $javascriptScriptCount = count($this->sm->get('ViewHelperManager')->get('HeadScript')->getContainer());
         $this->assertEquals(2, $javascriptScriptCount);
+    }
+    
+    public function testJavascriptListenerDoNotInjectJavascriptOnNotFoundRoute()
+    {
+        $em = new EventManager();
+        $this->listener->attach($em);
+    
+        $em->triggerEvent(new MvcEvent(MvcEvent::EVENT_RENDER));
+    
+        $javascriptScriptCount = count($this->sm->get('ViewHelperManager')->get('HeadScript')->getContainer());
+        $this->assertEquals(0, $javascriptScriptCount);
     }
     
     public function testJavascriptListenerCannotInjectJavascriptOnExcludedRoute()
@@ -67,7 +79,8 @@ class JavascriptFactoryTest extends \PHPUnit_Framework_TestCase
         $em = new EventManager();
         $this->listener->attach($em);
     
-        $em->triggerEvent((new MvcEvent(MvcEvent::EVENT_RENDER))->setRouteMatch((new RouteMatch([]))->setMatchedRouteName('undisplayable-route')));
+        $em->triggerEvent((new MvcEvent(MvcEvent::EVENT_RENDER))
+            ->setRouteMatch((new RouteMatch([]))->setMatchedRouteName('undisplayable-route')));
     
         $javascriptScriptCount = count($this->sm->get('ViewHelperManager')->get('HeadScript')->getContainer());
         $this->assertEquals(0, $javascriptScriptCount);

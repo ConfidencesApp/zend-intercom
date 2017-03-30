@@ -14,10 +14,12 @@ use Zend\Stdlib\AbstractOptions;
 
 class ModuleOptions extends AbstractOptions implements ModuleOptionsInterface
 {
+    // @codingStandardsIgnoreStart
     /**
      * Turn off strict options mode
      */
     protected $__strictMode__ = false;
+    // @codingStandardsIgnoreEnd
 
     /**
      * Intercom Application ID
