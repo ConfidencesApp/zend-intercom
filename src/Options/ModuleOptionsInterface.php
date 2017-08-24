@@ -26,6 +26,11 @@ interface ModuleOptionsInterface
     public function getAccessToken();
 
     /**
+     * @return string $identityVerificationSecret
+     */
+    public function getIdentityVerificationSecret();
+
+    /**
      * @return bool $enableJavascriptIntegration
      */
     public function getEnableJavascriptIntegration();

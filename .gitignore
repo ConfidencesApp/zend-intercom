@@ -28,6 +28,7 @@ extras/documentation
 /.settings/
 /.buildpath
 /.project
+/.idea/
 
 # Ignore PHPUnit coverage file
 clover.xml

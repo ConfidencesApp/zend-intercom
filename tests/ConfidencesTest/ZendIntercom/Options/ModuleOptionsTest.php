@@ -52,7 +52,25 @@ class ModuleOptionsTest extends \PHPUnit_Framework_TestCase
         $this->options->setAccessToken('MyAppAccessToken');
         $this->assertEquals('MyAppAccessToken', $this->options->getAccessToken());
     }
-    
+
+    /**
+     * @covers Confidences\ZendIntercom\Options\ModuleOptions::getIdentityVerificationSecret
+     */
+    public function testGetIdentityVerificationSecret()
+    {
+        $this->assertEquals(null, $this->options->getIdentityVerificationSecret());
+    }
+
+    /**
+     * @covers Confidences\ZendIntercom\Options\ModuleOptions::getIdentityVerificationSecret
+     * @covers Confidences\ZendIntercom\Options\ModuleOptions::setIdentityVerificationSecret
+     */
+    public function testSetIdentityVerificationSecret()
+    {
+        $this->options->setIdentityVerificationSecret('MyAppIdentityVerificationSecret');
+        $this->assertEquals('MyAppIdentityVerificationSecret', $this->options->getIdentityVerificationSecret());
+    }
+
     /**
      * @covers Confidences\ZendIntercom\Options\ModuleOptions::getEnableJavascriptIntegration
      */

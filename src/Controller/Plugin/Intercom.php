@@ -27,7 +27,6 @@ class Intercom extends AbstractPlugin
      * Constructor
      *
      * @param  IntercomClient $service
-     * @return \ZendIntercom\Intercom
      */
     public function __construct(IntercomClient $service)
     {

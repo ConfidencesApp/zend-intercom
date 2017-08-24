@@ -19,6 +19,11 @@ use Zend\View\HelperPluginManager;
 
 class Javascript implements ListenerAggregateInterface
 {
+    // @codingStandardsIgnoreStart
+    const INTERCOM_SCRIPT_LAUNCHER = '(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic(\'reattach_activator\');ic(\'update\',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement(\'script\');s.type=\'text/javascript\';s.async=true;s.src=\'https://widget.intercom.io/widget/%s\';var x=d.getElementsByTagName(\'script\')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent(\'onload\',l);}else{w.addEventListener(\'load\',l,false);}}})()';
+    // @codingStandardsIgnoreEnd
+    const INTERCOM_SCRIPT_SETTINGS = 'window.intercomSettings = %s;';
+
     protected $listeners = [];
     protected $options;
     protected $authService;
@@ -76,27 +81,59 @@ class Javascript implements ListenerAggregateInterface
     protected function injectJavascriptHTML()
     {
         if ($this->authService->hasIdentity()) {
-            $idMethod = $this->options->getZendIntercomAuthIdentityIdMethod();
-            $emailMethod = $this->options->getZendIntercomAuthIdentityEmailMethod();
-            $identity = $this->authService->getIdentity();
-    
             $viewHelper = $this->viewHelperManager->get('HeadScript');
             $viewHelper->appendScript(
                 sprintf(
-                    'window.intercomSettings = {user_id: "%s",email: "%s",app_id: "%s"};',
-                    $identity->$idMethod(),
-                    $identity->$emailMethod(),
-                    $this->options->getAppId()
+                    self::INTERCOM_SCRIPT_SETTINGS,
+                    json_encode($this->generateSettings())
                 )
             );
-            // @codingStandardsIgnoreStart
             $viewHelper->appendScript(
                 sprintf(
-                    "(function(){var w=window;var ic=w.Intercom;if(typeof ic===\"function\"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/%s';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()",
+                    self::INTERCOM_SCRIPT_LAUNCHER,
                     $this->options->getAppId()
                 )
             );
-            // @codingStandardsIgnoreEnd
         }
+    }
+
+    /**
+     * Generate the array containing all Intercom Settings needed
+     * @return array
+     */
+    protected function generateSettings()
+    {
+        $idMethod = $this->options->getZendIntercomAuthIdentityIdMethod();
+        $emailMethod = $this->options->getZendIntercomAuthIdentityEmailMethod();
+        $identity = $this->authService->getIdentity();
+
+        $userId = method_exists($identity, $idMethod) ? $identity->$idMethod() : null;
+        $userEmail = method_exists($identity, $emailMethod) ? $identity->$emailMethod() : null;
+
+        // TODO add additional data injection by using event
+        return array_filter([
+            'app_id' => $this->options->getAppId(),
+            'user_id' =>  $userId,
+            'email' => $userEmail,
+            'user_hash' => $this->generateUserHash($userId, $userEmail)
+        ]);
+    }
+
+    /**
+     * Generate the user hash for Indentity verification, null if the Identity Verification Secret is not provided
+     * @param $userId mixed User ID
+     * @param $userEmail mixed User email address
+     * @return string|null
+     */
+    protected function generateUserHash($userId, $userEmail)
+    {
+        $userIdentifier = $userId ?: $userEmail; // TODO convert to PHP7 only when PHP 5.6 is deprecated
+        $identityVerificationSecret = $this->options->getIdentityVerificationSecret();
+
+        return $userIdentifier && $identityVerificationSecret ? hash_hmac(
+            'sha256',
+            $userIdentifier,
+            $identityVerificationSecret
+        ) : null;
     }
 }

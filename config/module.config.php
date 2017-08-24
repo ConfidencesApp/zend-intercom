@@ -10,6 +10,7 @@ return [
     'zend-intercom' => [
         'app_id' => null,
         'access_token' => null,
+        'identity_verification_secret' => null,
         'enable_javascript_integration' => false,
         'excluded_routes' => [],
         'zend_intercom_auth_identity_id_method' => 'getId',

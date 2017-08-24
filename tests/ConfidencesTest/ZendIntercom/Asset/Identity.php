@@ -12,13 +12,22 @@ namespace ConfidencesTest\ZendIntercom\Asset;
 
 class Identity
 {
+    protected $id;
+    protected $email;
+
+    public function __construct($id = 1, $email = 'john.doe@example.com')
+    {
+        $this->id = $id;
+        $this->email = $email;
+    }
+
     public function getId()
     {
-        return 1;
+        return $this->id;
     }
     
     public function getEmail()
     {
-        return 'john.doe@example.com';
+        return $this->email;
     }
 }

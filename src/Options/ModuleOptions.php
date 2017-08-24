@@ -34,6 +34,12 @@ class ModuleOptions extends AbstractOptions implements ModuleOptionsInterface
     protected $accessToken = null;
 
     /**
+     * Intercom Identity Verification Secret
+     * @var string
+     */
+    protected $identityVerificationSecret = null;
+
+    /**
      * Enable Intercom Javascript SDK
      * @var bool
      */
@@ -90,6 +96,24 @@ class ModuleOptions extends AbstractOptions implements ModuleOptionsInterface
     public function setAccessToken($accessToken)
     {
         $this->accessToken = $accessToken;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdentityVerificationSecret()
+    {
+        return $this->identityVerificationSecret;
+    }
+
+    /**
+     * @param string $identityVerificationSecret
+     * @return self
+     */
+    public function setIdentityVerificationSecret($identityVerificationSecret)
+    {
+        $this->identityVerificationSecret = $identityVerificationSecret;
         return $this;
     }
 
